@@ -29,7 +29,7 @@ public class MyRangeTest {
     @DisplayName("ตัวเลขเริ่มต้น เป็น 1 input = [1,5], result = 1")
     public void case03() {
         // Arrange
-        String input = "(1,5]";
+        String input = "[1,5]";
         MyRange range = new MyRange(input);
         int result = range.getStart();
         assertEquals(1, result);

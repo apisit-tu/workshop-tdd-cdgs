@@ -9,7 +9,7 @@ public class MyRangeFailureTest {
     @DisplayName("ขึ้นต้นด้วย [, ( เท่านั้น input = 1,5]")
     public  void case01() {
         try {
-            MyRange range = new MyRange("1,5]");
+            MyRange range = new MyRange("[1,5]");
             range.validate();
             fail("ไม่ผิด");
         } catch (InputInvalidException e) {
