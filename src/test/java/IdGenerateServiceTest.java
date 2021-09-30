@@ -25,4 +25,31 @@ public class IdGenerateServiceTest {
         String result = service.getData();
         assertEquals("CODE6", result);
     }
+
+    @Test
+    public void getData2() {
+        SpyRandom spy = new SpyRandom(); // Dependency
+        // Dependency Injection (DI)
+        // 1. Constructor Injection
+        IdGenerateService service = new IdGenerateService();
+        // 2. Setter/field/property Injection
+        service.setRandom(spy);
+        service.getData();
+        // Assert
+        spy.verify(1);
+    }
+
+    class SpyRandom extends Random {
+        private int count;
+
+        @Override
+        public int nextInt(int bound) {
+            count++;
+            return 6;
+        }
+
+        public void verify(int expectedCount) {
+            assertTrue(count == expectedCount);
+        }
+    }
 }
