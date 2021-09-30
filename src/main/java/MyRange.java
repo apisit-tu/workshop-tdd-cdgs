@@ -19,7 +19,7 @@ public class MyRange {
     }
 
     public void validate() {
-        if(!input.startsWith("[") && !input.startsWith("(")) {
+        if(!input.startsWith("[")) {
             throw new InputInvalidException("Input Error");
         }
 
