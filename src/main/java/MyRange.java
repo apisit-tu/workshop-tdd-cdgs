@@ -17,4 +17,13 @@ public class MyRange {
         }
         return start - (ASCII_CODE_1 -1);
     }
+
+    public void validate() {
+        if(!input.startsWith("[") && !input.startsWith("(")) {
+            throw new InputInvalidException("Input Error");
+        }
+
+        //ok
+
+    }
 }
