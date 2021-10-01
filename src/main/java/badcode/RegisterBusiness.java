@@ -10,9 +10,7 @@ public class RegisterBusiness {
         // Validate input
         validateInput(speaker);
 
-        // Next steps
-        int exp = speaker.getExp();
-        speaker.setRegistrationFee(getFee(exp));
+        // Save speaker
         try {
             speakerId = repository.saveSpeaker(speaker);
         } catch (Exception exception) {
@@ -24,13 +22,13 @@ public class RegisterBusiness {
 
     private void validateInput(Speaker speaker) {
         String[] domains = {"gmail.com", "live.com"};
-        if (speaker.getFirstName() == null || speaker.getFirstName().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getFirstName())) {
             throw new ArgumentNullException("First name is required.");
         }
-        if (speaker.getLastName() == null || speaker.getLastName().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getLastName())) {
             throw new ArgumentNullException("Last name is required.");
         }
-        if (speaker.getEmail() == null || speaker.getEmail().trim().equals("")) {
+        if (isNullOrEmpty(speaker.getEmail())) {
             throw new ArgumentNullException("Email is required.");
         }
         // Your Tasks ...
@@ -40,18 +38,8 @@ public class RegisterBusiness {
         }
     }
 
-    int getFee(int experienceYear) {
-        int fee = 0;
-        if (experienceYear <= 1) {
-            fee = 500;
-        } else if (experienceYear <= 3) {
-            fee = 250;
-        } else if (experienceYear <= 5) {
-            fee = 100;
-        } else if (experienceYear <= 9) {
-            fee = 50;
-        }
-        return fee;
+    private boolean isNullOrEmpty(String value) {
+        return value == null || value.trim().equals("");
     }
 
     public String getEmailDomain(String email) {
